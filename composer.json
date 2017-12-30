@@ -1,0 +1,30 @@
+{
+    "name": "limingxinleo/x-swoole-rpc",
+    "description": "Rpc library for swoole",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "李铭昕",
+            "email": "715557344@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Xin\\Swoole\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "ext-swoole": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "phalcon/dd": "^1.0"
+    }
+}
