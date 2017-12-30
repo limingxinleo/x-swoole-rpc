@@ -13,7 +13,6 @@ use Xin\Swoole\Rpc\Exceptions\RpcException;
 
 class SwooleClient
 {
-
     public $client;
 
     protected static $_instances = [];
@@ -41,5 +40,4 @@ class SwooleClient
         $this->client->send(json_encode($data));
         return $this->client->recv();
     }
-
 }

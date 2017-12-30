@@ -27,7 +27,6 @@ class TestHandler implements HanderInterface
 
     public function returnArray()
     {
-
         return [
             'key' => 'val'
         ];
