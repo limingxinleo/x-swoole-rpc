@@ -72,7 +72,7 @@ class BaseTest extends TestCase
         for ($i = 0; $i < 10000; $i++) {
             $result = TestClient::getInstance()->returnTrue();
         }
-
-        echo microtime(true) - $time;
+        $time = microtime(true) - $time;
+        $this->assertTrue($time < 1);
     }
 }
