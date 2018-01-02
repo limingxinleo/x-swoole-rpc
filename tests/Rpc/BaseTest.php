@@ -45,20 +45,16 @@ class BaseTest extends TestCase
         $this->assertEquals("hi, {$name}", $result);
     }
 
-    public function testRecvTimeout()
-    {
-        $process = new swoole_process(function (swoole_process $worker) {
-            try {
-                $result = TestClient::getInstance()->recvTimeout();
-                $this->assertEquals("runtime is 2 seconds", $result);
-            } catch (\Exception $ex) {
-                $this->assertEquals(2, $ex->getCode());
-            }
-        });
-
-        $process->start();
-        // swoole_process::wait();
-    }
+    // public function testRecvTimeout()
+    // {
+    //     try {
+    //         $result = TestClient::getInstance()->recvTimeout();
+    //         $this->assertEquals("runtime is 2 seconds", $result);
+    //     } catch (\Exception $ex) {
+    //         sleep(3);
+    //         $this->assertEquals(2, $ex->getCode());
+    //     }
+    // }
 
     public function testException()
     {
@@ -68,5 +64,15 @@ class BaseTest extends TestCase
             $this->assertEquals(400, $ex->getCode());
             $this->assertEquals('测试异常', $ex->getMessage());
         }
+    }
+
+    public function testManyRequest()
+    {
+        $time = microtime(true);
+        for ($i = 0; $i < 10000; $i++) {
+            $result = TestClient::getInstance()->returnTrue();
+        }
+
+        echo microtime(true) - $time;
     }
 }

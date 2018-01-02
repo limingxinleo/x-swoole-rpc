@@ -92,9 +92,9 @@ abstract class Client
     public function getData($name, $arguments)
     {
         return [
-            'service' => $this->service,
-            'method' => $name,
-            'arguments' => $arguments,
+            Enum::SERVICE => $this->service,
+            Enum::METHOD => $name,
+            Enum::ARGUMENTS => $arguments,
         ];
     }
 
