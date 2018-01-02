@@ -36,4 +36,10 @@ class TestHandler implements HanderInterface
     {
         return "hi, {$name}";
     }
+
+    public function recvTimeout()
+    {
+        sleep(2);
+        return 'runtime is 2 seconds';
+    }
 }

@@ -15,7 +15,7 @@ class SwooleClient implements SwooleClientInterface
 {
     public $client;
 
-    protected $connectTimeout = 0.1;
+    protected $timeout = 0.1;
 
     protected static $_instances = [];
 
@@ -32,11 +32,11 @@ class SwooleClient implements SwooleClientInterface
     {
         $client = new swoole_client(SWOOLE_SOCK_TCP);
 
-        if (isset($options['connect_timeout']) && is_numeric($options['connect_timeout'])) {
-            $this->connectTimeout = $options['connect_timeout'];
+        if (isset($options['timeout']) && is_numeric($options['timeout'])) {
+            $this->timeout = $options['timeout'];
         }
 
-        if (!$client->connect($host, $port, $this->connectTimeout)) {
+        if (!$client->connect($host, $port, $this->timeout)) {
             throw new RpcException("connect failed. Error: {$client->errCode}");
         }
         $this->client = $client;

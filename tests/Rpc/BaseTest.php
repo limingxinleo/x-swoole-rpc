@@ -42,4 +42,14 @@ class BaseTest extends TestCase
         $result = TestClient::getInstance()->hasArguments($name);
         $this->assertEquals("hi, {$name}", $result);
     }
+
+    public function testRecvTimeout()
+    {
+        try {
+            $result = TestClient::getInstance()->recvTimeout();
+            $this->assertEquals("runtime is 2 seconds", $result);
+        } catch (\Exception $ex) {
+            $this->assertEquals(2, $ex->getCode());
+        }
+    }
 }
