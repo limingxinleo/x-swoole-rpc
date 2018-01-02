@@ -12,7 +12,6 @@ use Xin\Cli\Color;
 use swoole_server;
 use Xin\Swoole\Rpc\Exceptions\RpcException;
 use Xin\Swoole\Rpc\Handler\HanderInterface;
-use Xin\Swoole\Rpc\Enum;
 
 class Server
 {

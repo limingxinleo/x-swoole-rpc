@@ -42,4 +42,9 @@ class TestHandler implements HanderInterface
         sleep(2);
         return 'runtime is 2 seconds';
     }
+
+    public function exception()
+    {
+        throw new \Exception('测试异常', 400);
+    }
 }

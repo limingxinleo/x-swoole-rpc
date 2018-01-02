@@ -60,6 +60,11 @@ abstract class Client
         return static::getInstance()->$name(...$arguments);
     }
 
+    /**
+     * @desc
+     * @author limx
+     * @return SwooleClient
+     */
     public function getSwooleClient()
     {
         $options = [
@@ -78,7 +83,7 @@ abstract class Client
                 return $result[Enum::DATA];
             }
 
-            throw new RpcException(Enum::ERROR_MESSAGE, Enum::ERROR_CODE);
+            throw new RpcException($result[Enum::ERROR_MESSAGE], $result[Enum::ERROR_CODE]);
         }
 
         throw new RpcException('未知错误');
@@ -91,5 +96,10 @@ abstract class Client
             'method' => $name,
             'arguments' => $arguments,
         ];
+    }
+
+    public function flush()
+    {
+        unset(static::$_instances[$this->service]);
     }
 }

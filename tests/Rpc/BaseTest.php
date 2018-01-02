@@ -8,8 +8,10 @@
 // +----------------------------------------------------------------------
 namespace Tests\Rpc;
 
+use Tests\Rpc\App\Test2Client;
 use Tests\Rpc\App\TestClient;
 use Tests\TestCase;
+use swoole_process;
 
 class BaseTest extends TestCase
 {
@@ -45,11 +47,25 @@ class BaseTest extends TestCase
 
     public function testRecvTimeout()
     {
+        $process = new swoole_process(function (swoole_process $worker) {
+            try {
+                $result = TestClient::getInstance()->recvTimeout();
+                $this->assertEquals("runtime is 2 seconds", $result);
+            } catch (\Exception $ex) {
+                $this->assertEquals(2, $ex->getCode());
+            }
+        });
+
+        $process->start();
+    }
+
+    public function testException()
+    {
         try {
-            $result = TestClient::getInstance()->recvTimeout();
-            $this->assertEquals("runtime is 2 seconds", $result);
+            $result = TestClient::getInstance()->exception();
         } catch (\Exception $ex) {
-            $this->assertEquals(2, $ex->getCode());
+            $this->assertEquals(400, $ex->getCode());
+            $this->assertEquals('测试异常', $ex->getMessage());
         }
     }
 }
