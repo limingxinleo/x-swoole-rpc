@@ -11,4 +11,3 @@ require __DIR__ . '/bootstrap.php';
 use Tests\Rpc\App\TestClient;
 
 $result = TestClient::getInstance()->recvTimeout();
-

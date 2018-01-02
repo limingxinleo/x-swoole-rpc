@@ -64,6 +64,4 @@ class SwooleClient implements SwooleClientInterface
         // $this->client->close();
         unset(static::$_instances[$this->service]);
     }
-
-
 }
