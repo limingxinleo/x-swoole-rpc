@@ -17,4 +17,6 @@ class TestClient extends Client
     protected $host = '127.0.0.1';
 
     protected $port = 11520;
+
+    const TIMEOUT = 1;
 }

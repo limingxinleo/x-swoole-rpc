@@ -57,6 +57,7 @@ class BaseTest extends TestCase
         });
 
         $process->start();
+        // swoole_process::wait();
     }
 
     public function testException()
