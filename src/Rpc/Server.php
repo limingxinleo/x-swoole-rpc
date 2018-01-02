@@ -12,6 +12,7 @@ use Xin\Cli\Color;
 use swoole_server;
 use Xin\Swoole\Rpc\Exceptions\RpcException;
 use Xin\Swoole\Rpc\Handler\HanderInterface;
+use Xin\Swoole\Rpc\Enum;
 
 class Server
 {
@@ -86,17 +87,17 @@ class Server
     public function success($result)
     {
         return json_encode([
-            'success' => true,
-            'data' => $result,
+            Enum::SUCCESS => true,
+            Enum::DATA => $result,
         ]);
     }
 
     public function fail($code, $message)
     {
         return json_encode([
-            'success' => false,
-            'errorCode' => $code,
-            'message' => $message,
+            Enum::SUCCESS => false,
+            Enum::ERROR_CODE => $code,
+            Enum::ERROR_MESSAGE => $message,
         ]);
     }
 }

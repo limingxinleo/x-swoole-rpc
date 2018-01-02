@@ -10,6 +10,7 @@ namespace Xin\Swoole\Rpc;
 
 use swoole_client;
 use Xin\Swoole\Rpc\Exceptions\RpcException;
+use Xin\Swoole\Rpc\Enum;
 
 class SwooleClient implements SwooleClientInterface
 {
@@ -32,8 +33,8 @@ class SwooleClient implements SwooleClientInterface
     {
         $client = new swoole_client(SWOOLE_SOCK_TCP);
 
-        if (isset($options['timeout']) && is_numeric($options['timeout'])) {
-            $this->timeout = $options['timeout'];
+        if (isset($options[Enum::TIMEOUT]) && is_numeric($options[Enum::TIMEOUT])) {
+            $this->timeout = $options[Enum::TIMEOUT];
         }
 
         if (!$client->connect($host, $port, $this->timeout)) {

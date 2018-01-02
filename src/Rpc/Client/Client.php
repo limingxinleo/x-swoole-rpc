@@ -9,6 +9,7 @@
 namespace Xin\Swoole\Rpc\Client;
 
 use Xin\Swoole\Rpc\Exceptions\RpcException;
+use Xin\Swoole\Rpc\Enum;
 use Xin\Swoole\Rpc\SwooleClient;
 
 abstract class Client
@@ -62,7 +63,7 @@ abstract class Client
     public function getSwooleClient()
     {
         $options = [
-            'timeout' => static::TIMEOUT,
+            Enum::TIMEOUT => static::TIMEOUT,
         ];
 
         return SwooleClient::getInstance($this->service, $this->host, $this->port, $options);
@@ -73,11 +74,11 @@ abstract class Client
         $data = $this->getData($name, $arguments);
         $result = $this->client->handle($data);
         if ($result = json_decode($result, true)) {
-            if (true === $result['success']) {
-                return $result['data'];
+            if (true === $result[Enum::SUCCESS]) {
+                return $result[Enum::DATA];
             }
 
-            throw new RpcException($result['errorMessage'], $result['errorCode']);
+            throw new RpcException(Enum::ERROR_MESSAGE, Enum::ERROR_CODE);
         }
 
         throw new RpcException('未知错误');
