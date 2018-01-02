@@ -21,6 +21,11 @@ abstract class Client
 
     protected $port;
 
+    /** @var SwooleClient */
+    protected $client;
+
+    const CONNECT_TIMEOUT = 0.1;
+
     public function __construct()
     {
         if (!isset($this->service)) {
@@ -34,6 +39,8 @@ abstract class Client
         if (!isset($this->port)) {
             throw new RpcException('The port is required!');
         }
+
+        $this->client = $this->getSwooleClient();
     }
 
     public static function getInstance()
@@ -52,11 +59,19 @@ abstract class Client
         return static::getInstance()->$name(...$arguments);
     }
 
+    public function getSwooleClient()
+    {
+        $options = [
+            'connect_timeout' => static::CONNECT_TIMEOUT,
+        ];
+
+        return SwooleClient::getInstance($this->service, $this->host, $this->port, $options);
+    }
+
     public function __call($name, $arguments)
     {
         $data = $this->getData($name, $arguments);
-        $client = SwooleClient::getInstance($this->service, $this->host, $this->port);
-        $result = $client->handle($data);
+        $result = $this->client->handle($data);
         if ($result = json_decode($result, true)) {
             if (true === $result['success']) {
                 return $result['data'];

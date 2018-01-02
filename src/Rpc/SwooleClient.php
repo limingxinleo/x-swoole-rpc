@@ -11,25 +11,32 @@ namespace Xin\Swoole\Rpc;
 use swoole_client;
 use Xin\Swoole\Rpc\Exceptions\RpcException;
 
-class SwooleClient
+class SwooleClient implements SwooleClientInterface
 {
     public $client;
 
+    protected $connectTimeout = 0.1;
+
     protected static $_instances = [];
 
-    public static function getInstance($service, $host, $port)
+    public static function getInstance($service, $host, $port, $options = [])
     {
         if (isset(static::$_instances[$service]) && static::$_instances[$service] instanceof static) {
             return static::$_instances[$service];
         }
 
-        return static::$_instances[$service] = new static($host, $port);
+        return static::$_instances[$service] = new static($host, $port, $options);
     }
 
-    public function __construct($host, $port)
+    public function __construct($host, $port, $options = [])
     {
         $client = new swoole_client(SWOOLE_SOCK_TCP);
-        if (!$client->connect($host, $port, -1)) {
+
+        if (isset($options['connect_timeout']) && is_numeric($options['connect_timeout'])) {
+            $this->connectTimeout = $options['connect_timeout'];
+        }
+
+        if (!$client->connect($host, $port, $this->connectTimeout)) {
             throw new RpcException("connect failed. Error: {$client->errCode}");
         }
         $this->client = $client;
