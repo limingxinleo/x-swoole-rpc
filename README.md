@@ -41,6 +41,10 @@ $server->setHandler('test', TestHandler::getInstance())->serve('0.0.0.0', '11520
 
 use Xin\Swoole\Rpc\Client\Client;
 
+/**
+ * Class TestClient
+ * @method test
+ */
 class TestClient extends Client
 {
     protected $service = 'test';
