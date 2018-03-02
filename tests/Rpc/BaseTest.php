@@ -73,6 +73,6 @@ class BaseTest extends TestCase
             $result = TestClient::getInstance()->returnTrue();
         }
         $time = microtime(true) - $time;
-        $this->assertTrue($time < 1);
+        $this->assertTrue($time < 10);
     }
 }
