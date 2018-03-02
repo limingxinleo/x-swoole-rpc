@@ -20,8 +20,8 @@
         }
     },
     "require": {
-        "php": ">=7.0",
-        "ext-swoole": "^2.0",
+        "php": ">=5.4",
+        "ext-swoole": "^2.0|^1.10",
         "limingxinleo/x-console-color": "^1.0"
     },
     "require-dev": {
