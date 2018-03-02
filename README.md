@@ -1,5 +1,7 @@
 # Swoole RPC Library
 
+[![Build Status](https://travis-ci.org/limingxinleo/x-swoole-rpc.svg?branch=master)](https://travis-ci.org/limingxinleo/x-swoole-rpc)
+
 ## 安装
 ~~~
 composer require limingxinleo/x-swoole-rpc
