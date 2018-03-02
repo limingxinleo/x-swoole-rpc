@@ -20,12 +20,12 @@
         }
     },
     "require": {
-        "php": ">=5.4",
-        "ext-swoole": "^2.0|^1.10",
+        "php": ">=5.5",
+        "ext-swoole": ">=1.10",
         "limingxinleo/x-console-color": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8",
+        "phpunit/phpunit": ">=4.8",
         "limingxinleo/x-trait-common": "^1.0"
     }
 }
