@@ -65,7 +65,7 @@ abstract class Client
      * @author limx
      * @return SwooleClient
      */
-    public function getSwooleClient()
+    protected function getSwooleClient()
     {
         $options = [
             Enum::TIMEOUT => static::TIMEOUT,
@@ -89,7 +89,7 @@ abstract class Client
         throw new RpcException('未知错误');
     }
 
-    public function getData($name, $arguments)
+    protected function getData($name, $arguments)
     {
         return [
             Enum::SERVICE => $this->service,
