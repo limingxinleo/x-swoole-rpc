@@ -58,7 +58,7 @@ class Server
         $this->config = $config;
 
         set_time_limit(0);
-        $server = new swoole_server($host, $port);
+        $server = new swoole_server($this->host, $this->port);
 
         $server->set($config);
 
