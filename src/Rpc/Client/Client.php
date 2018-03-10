@@ -71,7 +71,11 @@ abstract class Client
             Enum::TIMEOUT => static::TIMEOUT,
         ];
 
-        return SwooleClient::getInstance($this->service, $this->host, $this->port, $options);
+        $service = $this->service;
+        $host = $this->host;
+        $port = intval($this->port);
+
+        return SwooleClient::getInstance($service, $host, $port, $options);
     }
 
     public function __call($name, $arguments)
