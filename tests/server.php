@@ -10,11 +10,14 @@ require __DIR__ . '/bootstrap.php';
 
 use Xin\Swoole\Rpc\Server;
 use Tests\Rpc\App\TestHandler;
+use Tests\Rpc\App\LoggerHandler;
 
 $server = new Server();
-$server->setHandler('test', TestHandler::getInstance())->serve('0.0.0.0', '11520', [
-    'pid_file' => './socket.pid',
-    'daemonize' => false,
-    'max_request' => 500, // 每个worker进程最大处理请求次数
-    'worker_num' => 1,
-]);
+$server->setHandler('test', TestHandler::getInstance())
+    ->setLoggerHandler(LoggerHandler::getInstance())
+    ->serve('0.0.0.0', '11520', [
+        'pid_file' => './socket.pid',
+        'daemonize' => false,
+        'max_request' => 500, // 每个worker进程最大处理请求次数
+        'worker_num' => 1,
+    ]);
