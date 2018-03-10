@@ -54,7 +54,7 @@ class Server
         }
 
         $this->host = $host;
-        $this->port = $port;
+        $this->port = intval($port);
         $this->config = $config;
 
         set_time_limit(0);
