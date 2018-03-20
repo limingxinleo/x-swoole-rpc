@@ -85,9 +85,9 @@ class Server
     {
         try {
             $data = json_decode($data, true);
-            $service = $data['service'];
-            $method = $data['method'];
-            $arguments = $data['arguments'];
+            $service = $data[Enum::SERVICE];
+            $method = $data[Enum::METHOD];
+            $arguments = $data[Enum::ARGUMENTS];
 
             if (!isset($this->services[$service])) {
                 throw new RpcException('The service handler is not exist!');
