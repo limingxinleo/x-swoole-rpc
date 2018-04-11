@@ -47,4 +47,14 @@ class TestHandler implements HanderInterface
     {
         throw new \Exception('测试异常', 400);
     }
+
+    public function bigString($str)
+    {
+        return $str;
+    }
+
+    public function bigReturnString($str)
+    {
+        return str_repeat($str, 100);
+    }
 }

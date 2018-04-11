@@ -20,4 +20,6 @@ $server->setHandler('test', TestHandler::getInstance())
         'daemonize' => false,
         'max_request' => 500, // 每个worker进程最大处理请求次数
         'worker_num' => 1,
+        'open_eof_check' => true,
+        'package_eof' => "\r\n",
     ]);

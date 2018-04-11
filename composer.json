@@ -26,6 +26,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": ">=5.6",
-        "limingxinleo/x-trait-common": "^1.0"
+        "limingxinleo/x-trait-common": "^1.0",
+        "limingxinleo/support-str": "^1.0"
     }
 }

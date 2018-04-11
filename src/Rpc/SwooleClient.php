@@ -55,7 +55,7 @@ class SwooleClient implements SwooleClientInterface
         if (!$client->isConnected()) {
             throw new RpcException("connect failed. Error: {$client->errCode}");
         }
-        $client->send(json_encode($data));
+        $client->send(json_encode($data) . "\r\n");
         return $client->recv();
     }
 

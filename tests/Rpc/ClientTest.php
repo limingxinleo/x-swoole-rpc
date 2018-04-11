@@ -10,6 +10,7 @@ namespace Tests\Rpc;
 
 use Tests\Rpc\App\TestClient;
 use Tests\TestCase;
+use limx\Support\Str;
 
 class ClientTest extends TestCase
 {
@@ -50,5 +51,17 @@ class ClientTest extends TestCase
         $this->assertArrayHasKey('response', $data);
         $this->assertEquals(400, $data['response']['errorCode']);
         $this->assertEquals('测试异常', $data['response']['errorMessage']);
+    }
+
+    public function testBigString()
+    {
+        $str = Str::random(2048);
+        $this->assertEquals($str, TestClient::getInstance()->bigString($str));
+    }
+
+    public function testBigReturnString()
+    {
+        $str = Str::random(200);
+        $this->assertEquals(str_repeat($str, 100), TestClient::getInstance()->bigReturnString($str));
     }
 }
