@@ -36,6 +36,8 @@ $server->setHandler('test', TestHandler::getInstance())->serve('0.0.0.0', '11520
     'pid_file' => './socket.pid',
     'daemonize' => false,
     'max_request' => 500, // 每个worker进程最大处理请求次数
+    'open_eof_check' => true,
+    'package_eof' => "\r\n",
 ]);
 ~~~
 
