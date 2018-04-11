@@ -12,7 +12,7 @@ use Exception;
 
 interface LoggerInterface
 {
-    public function info(array $request, array $response);
+    public function info($request, $response);
 
-    public function error(array $request, array $response, Exception $ex);
+    public function error($request, $response, Exception $ex);
 }

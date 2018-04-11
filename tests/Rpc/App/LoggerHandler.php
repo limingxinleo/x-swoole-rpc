@@ -16,7 +16,7 @@ class LoggerHandler implements LoggerInterface
 {
     use InstanceTrait;
 
-    public function info(array $request, array $response)
+    public function info($request, $response)
     {
         $data = [
             'request' => $request,
@@ -27,7 +27,7 @@ class LoggerHandler implements LoggerInterface
         file_put_contents($file, json_encode($data));
     }
 
-    public function error(array $request, array $response, Exception $ex)
+    public function error($request, $response, Exception $ex)
     {
         $data = [
             'request' => $request,
