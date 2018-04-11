@@ -83,6 +83,9 @@ class Server
 
     public function receive(swoole_server $server, $fd, $reactor_id, $data)
     {
+        if ($this->debug) {
+            echo Color::colorize("fd:{$fd} data:{$data}", Color::FG_LIGHT_GREEN) . PHP_EOL;
+        }
         try {
             $data = json_decode($data, true);
             $service = $data[Enum::SERVICE];
