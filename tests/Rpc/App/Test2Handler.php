@@ -11,7 +11,7 @@ namespace Tests\Rpc\App;
 use Xin\Swoole\Rpc\Handler\HanderInterface;
 use Xin\Traits\Common\InstanceTrait;
 
-class TestHandler implements HanderInterface
+class Test2Handler implements HanderInterface
 {
     use InstanceTrait;
 
@@ -56,15 +56,5 @@ class TestHandler implements HanderInterface
     public function bigReturnString($str)
     {
         return str_repeat($str, 100);
-    }
-
-    public function getTest2Handler100Times()
-    {
-        $str = '';
-        for ($i = 0; $i < 100; $i++) {
-            $client = Test2Client::getInstance();
-            $str .= $client->returnString();
-        }
-        return $str;
     }
 }

@@ -18,15 +18,14 @@ use Xin\Swoole\Rpc\Client\Client;
  * @method exception()
  * @method bigString($str)
  * @method bigReturnString($str)
- * @method getTest2Handler100Times()
  */
-class TestClient extends Client
+class Test2Client extends Client
 {
-    protected $service = 'test';
+    protected $service = 'test2';
 
     protected $host = '127.0.0.1';
 
-    protected $port = 11520;
+    protected $port = 11521;
 
     const TIMEOUT = 1;
 }

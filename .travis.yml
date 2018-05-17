@@ -40,6 +40,7 @@ before_script:
   # 启动PHP
   - cd $TRAVIS_BUILD_DIR
   - php tests/server.php &> /dev/null &
+  - php tests/server2.php &> /dev/null &
 
 script:
   - cd $TRAVIS_BUILD_DIR

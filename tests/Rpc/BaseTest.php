@@ -75,4 +75,14 @@ class BaseTest extends TestCase
         $time = microtime(true) - $time;
         $this->assertTrue($time < 10);
     }
+
+    public function testMuitiServiceRequest()
+    {
+        $time = microtime(true);
+        for ($i = 0; $i < 100; $i++) {
+            $result = TestClient::getInstance()->getTest2Handler100Times();
+        }
+        $time = microtime(true) - $time;
+        $this->assertTrue($time < 10);
+    }
 }
