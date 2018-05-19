@@ -13,7 +13,7 @@ use Tests\Rpc\App\TestHandler;
 use Tests\Rpc\App\LoggerHandler;
 
 $server = new Server();
-$server->setHandler('test', TestHandler::getInstance())
+$server->setHandler('test', TestHandler::class)
     ->setLoggerHandler(LoggerHandler::getInstance())
     ->serve('0.0.0.0', '11520', [
         'pid_file' => './socket.pid',

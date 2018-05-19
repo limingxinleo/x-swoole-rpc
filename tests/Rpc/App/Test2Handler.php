@@ -10,8 +10,9 @@ namespace Tests\Rpc\App;
 
 use Xin\Swoole\Rpc\Handler\HanderInterface;
 use Xin\Traits\Common\InstanceTrait;
+use Xin\Swoole\Rpc\Handler\Handler;
 
-class Test2Handler implements HanderInterface
+class Test2Handler extends Handler
 {
     use InstanceTrait;
 

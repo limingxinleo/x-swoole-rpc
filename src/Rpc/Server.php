@@ -34,7 +34,7 @@ class Server
         return $this;
     }
 
-    public function setHandler($service, HanderInterface $hander)
+    public function setHandler($service, $hander)
     {
         $this->services[$service] = $hander;
         return $this;
@@ -97,7 +97,9 @@ class Server
                 throw new RpcException('The service handler is not exist!');
             }
 
-            $result = $this->services[$service]->$method(...$arguments);
+            $handler = $this->services[$service];
+            $handler = new $handler($server, $fd, $reactor_id);
+            $result = $handler->$method(...$arguments);
             $response = $this->success($result);
             $server->send($fd, json_encode($response));
 
