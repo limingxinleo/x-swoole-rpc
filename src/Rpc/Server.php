@@ -9,9 +9,9 @@
 namespace Xin\Swoole\Rpc;
 
 use Xin\Cli\Color;
-use swoole_server;
 use Xin\Swoole\Rpc\Exceptions\RpcException;
-use Xin\Swoole\Rpc\Handler\HanderInterface;
+use ReflectionClass;
+use swoole_server;
 
 class Server
 {
@@ -97,8 +97,8 @@ class Server
                 throw new RpcException('The service handler is not exist!');
             }
 
-            $handler = $this->services[$service];
-            $handler = new $handler($server, $fd, $reactor_id);
+            $ref = new ReflectionClass($this->services[$service]);
+            $handler = $ref->newInstance($server, $fd, $reactor_id);
             $result = $handler->$method(...$arguments);
             $response = $this->success($result);
             $server->send($fd, json_encode($response));

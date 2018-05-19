@@ -19,6 +19,7 @@ use Xin\Swoole\Rpc\Client\Client;
  * @method bigString($str)
  * @method bigReturnString($str)
  * @method getTest2Handler100Times()
+ * @method getSwooleFd()
  */
 class TestClient extends Client
 {

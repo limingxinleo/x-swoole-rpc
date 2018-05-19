@@ -64,4 +64,9 @@ class TestHandler extends Handler
         }
         return $str;
     }
+
+    public function getSwooleFd()
+    {
+        return $this->fd;
+    }
 }

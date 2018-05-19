@@ -64,4 +64,11 @@ class ClientTest extends TestCase
         $str = Str::random(200);
         $this->assertEquals(str_repeat($str, 100), TestClient::getInstance()->bigReturnString($str));
     }
+
+    public function testGetSwooleFd()
+    {
+        $fd = TestClient::getInstance()->getSwooleFd();
+        $this->assertTrue(is_int($fd));
+        $this->assertTrue($fd > 0);
+    }
 }
