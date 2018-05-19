@@ -9,12 +9,9 @@
 namespace Tests\Rpc\App;
 
 use Xin\Swoole\Rpc\Handler\Handler;
-use Xin\Traits\Common\InstanceTrait;
 
 class TestHandler extends Handler
 {
-    use InstanceTrait;
-
     public function returnString()
     {
         return 'success';
