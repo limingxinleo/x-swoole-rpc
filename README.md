@@ -17,14 +17,10 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Xin\Swoole\Rpc\Server;
 
-use Xin\Swoole\Rpc\Handler\HanderInterface;
-use Xin\Traits\Common\InstanceTrait;
+use Xin\Swoole\Rpc\Handler\Handler;
 
-class TestHandler implements HanderInterface
+class TestHandler extends Handler
 {
-    /** limingxinleo/x-trait-common */
-    use InstanceTrait;
-
     public function test()
     {
         return 'success';
@@ -32,7 +28,7 @@ class TestHandler implements HanderInterface
 }
 
 $server = new Server();
-$server->setHandler('test', TestHandler::getInstance())->serve('0.0.0.0', '11520', [
+$server->setHandler('test', TestHandler::class)->serve('0.0.0.0', '11520', [
     'pid_file' => './socket.pid',
     'daemonize' => false,
     'max_request' => 500, // 每个worker进程最大处理请求次数

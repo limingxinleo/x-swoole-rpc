@@ -8,13 +8,10 @@
 // +----------------------------------------------------------------------
 namespace Tests\Rpc\App;
 
-use Xin\Swoole\Rpc\Handler\HanderInterface;
-use Xin\Traits\Common\InstanceTrait;
+use Xin\Swoole\Rpc\Handler\Handler;
 
-class TestHandler implements HanderInterface
+class TestHandler extends Handler
 {
-    use InstanceTrait;
-
     public function returnString()
     {
         return 'success';
@@ -66,5 +63,10 @@ class TestHandler implements HanderInterface
             $str .= $client->returnString();
         }
         return $str;
+    }
+
+    public function getSwooleFd()
+    {
+        return $this->fd;
     }
 }
