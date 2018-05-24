@@ -101,7 +101,7 @@ class Server
             $response = $this->success($result);
             $server->send($fd, json_encode($response));
 
-            if ($this->debug && $this->logger && $this->logger instanceof LoggerInterface) {
+            if ($this->logger && $this->logger instanceof LoggerInterface) {
                 $this->logger->info($data, $response);
             }
         } catch (\Exception $ex) {
