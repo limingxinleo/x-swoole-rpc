@@ -24,7 +24,7 @@ class LoggerHandler implements LoggerInterface
         ];
 
         $file = TESTS_PATH . '/info.log';
-        file_put_contents($file, json_encode($data));
+        file_put_contents($file, json_encode($data, JSON_UNESCAPED_UNICODE));
     }
 
     public function error($request, $response, Exception $ex)
@@ -35,6 +35,6 @@ class LoggerHandler implements LoggerInterface
         ];
 
         $file = TESTS_PATH . '/error.log';
-        file_put_contents($file, json_encode($data));
+        file_put_contents($file, json_encode($data, JSON_UNESCAPED_UNICODE));
     }
 }
